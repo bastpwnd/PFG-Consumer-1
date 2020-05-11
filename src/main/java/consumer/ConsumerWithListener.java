@@ -7,7 +7,9 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ConsumerWithListener {
@@ -30,7 +32,11 @@ public class ConsumerWithListener {
     @Scheduled(cron = "*/10 * * * * ?")
     public void printProductsById(){
         LOG.info("Imprimiendo productos recibidos en la tienda:");
-        products.forEach((k,v)->System.out.println("Tipo de producto : " + v + " ID : " + k));
+        Map<Integer, String> productsByKey = products.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+        productsByKey.forEach((k,v)->System.out.println("Tipo de producto : " + v + " ID : " + k));
     }
 
 
