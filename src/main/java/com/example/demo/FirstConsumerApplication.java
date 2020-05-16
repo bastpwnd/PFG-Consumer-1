@@ -2,6 +2,7 @@ package com.example.demo;
 
 import consumer.Consumer;
 import consumer.ConsumerWithListener;
+import controller.ConsumeController;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +15,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringBootApplication(scanBasePackages = { "consumer" })
+@SpringBootApplication(scanBasePackages = { "consumer", "controller"})
 @EnableScheduling
 public class FirstConsumerApplication {
 
