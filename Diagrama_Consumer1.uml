@@ -3,20 +3,25 @@
   <ID>JAVA</ID>
   <OriginalElement>consumer</OriginalElement>
   <nodes>
-    <node x="-430.0" y="14.0">consumer.Consumer</node>
-    <node x="-127.0" y="-182.0">com.example.demo.FirstConsumerApplication</node>
-    <node x="68.0" y="18.0">consumer.ConsumerWithListener</node>
+    <node x="18.0" y="262.0">consumer.Consumer</node>
+    <node x="-327.5" y="524.0">controller.ConsumeController</node>
+    <node x="-114.0" y="18.0">com.example.demo.FirstConsumerApplication</node>
+    <node x="-401.0" y="252.0">consumer.ConsumerWithListener</node>
   </nodes>
   <notes />
-  <edges />
-  <settings layout="Hierarchic Group" zoom="1.0" x="-35.0" y="-1.5" />
+  <edges>
+    <edge source="controller.ConsumeController" target="consumer.ConsumerWithListener">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="102.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="93.0" y="333.5" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
     <Category>Methods</Category>
     <Category>Properties</Category>
-    <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ConsumeController {
 
     @GetMapping("/consume-events")
-    public String startProducer(Model model) {
+    public String startConsumer(Model model) {
 
         model.addAttribute("eventos", ConsumerWithListener.getEvents());
 
