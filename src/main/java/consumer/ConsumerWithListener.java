@@ -9,10 +9,9 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
 
 @Service
 public class ConsumerWithListener {
@@ -21,6 +20,10 @@ public class ConsumerWithListener {
     private static Map<Integer, String> products = new HashMap<>();
     private static ArrayList<String> eventos = new ArrayList<String>();;
 
+    /**
+     * Listener method to consume events in a topic
+     * @param record event with data
+     */
     @KafkaListener(topics = "test_1", groupId = "Tienda-1")
     public void receive(ConsumerRecord<String, String> record){
 
@@ -28,6 +31,10 @@ public class ConsumerWithListener {
         insertDataInMap(record);
     }
 
+    /**
+     * Method to insert data in list
+     * @param evento event consumed with data
+     */
     public void insertDataInMap(ConsumerRecord<String, String> evento){
 
         String data []= evento.value().split(":");
@@ -42,6 +49,9 @@ public class ConsumerWithListener {
         eventos.add(data[0]+" "+data[1]+" creado: "+date+" consumido: "+timestamp.toLocalDateTime());
     }
 
+    /**
+     * Scheduled to print products in log every 20 seconds
+     */
     @Scheduled(cron = "*/20 * * * * ?")
     public void printProductsById(){
         LOG.info("Imprimiendo productos recibidos en la tienda:");
@@ -52,6 +62,10 @@ public class ConsumerWithListener {
         productsByKey.forEach((k,v)->System.out.println("Tipo de producto : " + v + " ID : " + k));
     }
 
+    /**
+     * Method to get all events consumed
+     * @return
+     */
     public static List<String> getEvents(){
 
         return eventos;

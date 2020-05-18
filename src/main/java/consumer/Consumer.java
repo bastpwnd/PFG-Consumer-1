@@ -17,6 +17,9 @@ public class Consumer {
 
     private KafkaConsumer<String, String> kafkaConsumerClient;
 
+    /**
+     * Method to create consumer and suscribe a topic
+     */
     public void createKafkaConsumer() {
 
         // Configure the properties and create the Kafka consumer
@@ -31,7 +34,7 @@ public class Consumer {
 
     /**
      * Properties to Kafka consumer
-     * @return
+     * @return props properties with values
      */
     public Properties initProperties(){
         Properties props = new Properties();
@@ -47,6 +50,9 @@ public class Consumer {
         return props;
     }
 
+    /**
+     * Method to consume all events and print data in log
+     */
     public void checkNewStockAvailability() {
         ConsumerRecords<String, String> records;
         if (kafkaConsumerClient == null) {
